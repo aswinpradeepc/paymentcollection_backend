@@ -5,7 +5,7 @@ import { json, urlencoded } from 'body-parser';
 import swaggerUi from 'swagger-ui-express';
 import swaggerSpec from './swagger/swaggerConfig';
 import customerRoutes from './routes/customerRoutes';
-// import paymentRoutes from './routes/paymentRoutes';
+import paymentRoutes from './routes/paymentRoutes';
 import errorHandler from './middlewares/errorHandler';
 
 // Load environment variables from .env file
@@ -23,7 +23,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // Routes
 app.use('/customers', customerRoutes);
-// app.use('/payments', paymentRoutes);
+app.use('/payments', paymentRoutes);
 
 // Error handling middleware
 app.use(errorHandler);
