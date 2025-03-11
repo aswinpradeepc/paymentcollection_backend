@@ -1,21 +1,18 @@
-import { Sequelize } from 'sequelize';
-import dotenv from 'dotenv';
+import { Sequelize } from "sequelize";
+import dotenv from "dotenv-safe";
 
-// Load environment variables from .env file
-dotenv.config();
+dotenv.config(); 
 
-// Initialize Sequelize with PostgreSQL
 const sequelize = new Sequelize(
-  process.env.POSTGRES_DB as string,
-  process.env.POSTGRES_USER as string,
-  process.env.POSTGRES_PASSWORD as string,
+  process.env.POSTGRES_DB!,
+  process.env.POSTGRES_USER!,
+  process.env.POSTGRES_PASSWORD!,
   {
-    host: process.env.POSTGRES_HOST || 'localhost',
-    dialect: 'postgres',
-    port: parseInt(process.env.POSTGRES_PORT || '5432', 10),
+    host: process.env.PG_HOST!,
+    port: Number(process.env.PG_PORT),
+    dialect: "postgres",
     logging: false,
   }
 );
 
-// Export the Sequelize instance
 export default sequelize;

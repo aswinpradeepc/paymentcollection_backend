@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import { json, urlencoded } from 'body-parser';
 // import customerRoutes from './routes/customerRoutes';
 // import paymentRoutes from './routes/paymentRoutes';
+import errorHandler from './middlewares/errorHandler';
 
 // Load environment variables from .env file
 dotenv.config();
@@ -20,9 +21,6 @@ app.use(urlencoded({ extended: true }));
 // app.use('/payments', paymentRoutes);
 
 // Error handling middleware
-app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
-  console.error(err.stack);
-  res.status(500).send('Internal Server Error');
-});
+app.use(errorHandler);
 
 export default app;
