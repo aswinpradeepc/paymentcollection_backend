@@ -1,8 +1,10 @@
 import app from './app';
 import sequelize from './config/db';
+import './models/customer'; // Import models to ensure they are registered
+import './models/payment';  // Import models to ensure they are registered
 
-// Set the port from environment variables or default to 5000
-const PORT = process.env.PORT || 5000;
+// Set the port from environment variables or default to 3000
+const PORT = process.env.PORT || 3000;
 
 const startServer = async () => {
   const maxRetries = 5;
@@ -12,6 +14,10 @@ const startServer = async () => {
     try {
       await sequelize.authenticate();
       console.log('Connection has been established successfully.');
+
+      // Synchronize models with database
+      await sequelize.sync({ force: true }); // Use { force: true } for development only
+
       app.listen(PORT, () => {
         console.log(`Server is running on port ${PORT}`);
       });

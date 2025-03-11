@@ -2,7 +2,9 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import { json, urlencoded } from 'body-parser';
-// import customerRoutes from './routes/customerRoutes';
+import swaggerUi from 'swagger-ui-express';
+import swaggerSpec from './swagger/swaggerConfig';
+import customerRoutes from './routes/customerRoutes';
 // import paymentRoutes from './routes/paymentRoutes';
 import errorHandler from './middlewares/errorHandler';
 
@@ -16,8 +18,11 @@ app.use(cors());
 app.use(json());
 app.use(urlencoded({ extended: true }));
 
+// Swagger UI
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
 // Routes
-// app.use('/customers', customerRoutes);
+app.use('/customers', customerRoutes);
 // app.use('/payments', paymentRoutes);
 
 // Error handling middleware
