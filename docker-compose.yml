@@ -17,7 +17,9 @@ services:
     volumes:
       - .:/app
       - /app/node_modules
-    command: ["npx", "nodemon", "--watch", "src", "--exec", "ts-node", "src/server.ts"]
+    # command: ["npx", "nodemon", "--watch", "src", "--exec", "ts-node", "src/server.ts"]
+    # Uncomment the following command to run in production
+    command: ["node", "dist/server.js"]
 
   db:
     image: postgres:16

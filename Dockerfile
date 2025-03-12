@@ -28,7 +28,7 @@ RUN tsc
 EXPOSE 3000
 
 # Start the server with node for production
-# CMD ["node", "dist/server.js"]
+CMD ["node", "dist/server.js"]
 
 # Start the application with nodemon for development
-CMD ["npx", "nodemon", "--watch", "src", "--exec", "ts-node", "src/server.ts"]
+# CMD ["npx", "nodemon", "--watch", "src", "--exec", "ts-node", "src/server.ts"]
